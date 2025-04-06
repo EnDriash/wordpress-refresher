@@ -1,37 +1,100 @@
-Jak to działą?
 
-Wstepne requirements:
-najpierw zainstaluj NVM
-Node Version Menagera
-https://github.com/coreybutler/nvm-windows
-po instalacji sprawdź
+# 🔁 WordPress Auto Refresher
+
+**A dev helper script that watches local WordPress theme/plugin files and automatically reloads your Chrome browser tabs when changes are detected.**  
+Perfect for use with WinSCP, VS Code, and Chrome in debug mode — no manual refreshing needed.
+
+---
+
+## 🔧 How does it work?
+
+### 🧰 Initial Requirements
+
+First, install **NVM (Node Version Manager)**:  
+👉 https://github.com/coreybutler/nvm-windows
+
+After installing, check if it's working:
+
+```bash
 nvm -v
-nastepnie zainstaluj versje noda
+```
+
+Then install Node.js:
+
+```bash
 nvm install 20
 nvm use 20
-od teraz uzywasz 20 wersji node.js
-zobacz wersje npm
+```
+
+From now on, you're using Node.js version 20.  
+Check your npm version:
+
+```bash
 npm -v
-wejdz do tego katalogu i
-npm i
+```
 
-Doatkowo dla wygody nie uzywaj nigdy FileZilli zainstaluj sobie WinSCP ktory nie ma wkurzajacych pop-upow i potwierdzen do uploadu plikow.
+Now go into this directory and run:
 
-Główne ustawienia
-nastepnie główna część 
-jesli pracujesz nad jakims konkretnym url to musisz go podmienic w pliku .env DOMAIN
+```bash
+npm install
+```
 
-WAZNE:
-skrypt uzywa pupeeter-core ktory steruje przegladarka dlatego tez waznym jest zeby uruchomic np. chrome w wersji z debug mode i otworzyc port 9222 ktory umozliwi odswiezanie tabem. ten port otwiera sie domyslnie przy starcie przegladarki wiec jesli masz otwarte juz okna musisz je zamknac uruchomic chroma w wersji debug:
+---
 
-bash
-``` "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222  ```
+### 🚫 Additionally: for convenience, never use FileZilla again
 
-lub kliknij w przygotowany plik skryptowy .bat (pamietaj by zmienic   --new-window "START URL OF YOUR WP PAGE")
+Instead, install **WinSCP**, which doesn’t show those annoying upload confirmation popups.
+
+---
+
+### ⚙️ Main settings
+
+When working on a specific URL — you **must change it** inside the `.env` file:
+
+```env
+DOMAIN=yourdomain.pl
+```
+
+---
+
+### ❗ IMPORTANT
+
+This script uses **puppeteer-core**, which controls the browser.  
+That’s why it’s crucial to launch Chrome in **debug mode**, opening port `9222`, which allows tab refresh.
+
+This port only opens **when starting the browser with that flag** —  
+so if you already have Chrome windows open, you must close them and launch Chrome in debug mode like this:
+
+```bash
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222
+```
+
+---
+
+### 💡 Or use the prepared `.bat` script
+
+Just click on the prepared script file:
+
+```bash
 start-dev.bat
+```
 
+But **remember** to edit this part:
 
-nastepnie...
-nalezy zapewne zalogowac sie do panelu admina wordpress a pozniej przejsc na podglad strony nad ktora pracujesz
-teraz za kazdym razem gdy zapiszesz pliki lokalnie w folderze zobaczysz logi na dzialajcym skrypcie np.
-✅ Odświeżono: https://XXX.pl/homepage/# wordpress-refresher
+```bat
+--new-window "START URL OF YOUR WP PAGE"
+```
+
+---
+
+### 🧪 Next steps...
+
+You’ll likely need to log into your **WordPress admin panel**,  
+and then go to the frontend view of the page you're currently working on.
+
+Now — every time you save files locally in the folder,  
+you’ll see logs inside the running script like:
+
+```bash
+✅ Reloaded: https://XXX.pl/homepage/#wordpress-refresher
+```

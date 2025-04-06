@@ -1,15 +1,23 @@
 {
   "name": "autorefresh",
   "version": "1.0.0",
-  "main": "wathc.js",
+  "description": "Auto-refresh Chrome tabs on file change for WordPress development.",
+  "main": "watch.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node watch.js"
+    "start": "node watch.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "wordpress",
+    "auto-refresh",
+    "devtools",
+    "puppeteer",
+    "chrome",
+    "hot-reload",
+    "live-reload"
+  ],
+  "author": "Jędrzej Siewierski <https://github.com/EnDriash>",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.7",
